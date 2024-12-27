@@ -6,6 +6,6 @@ import HelloWorld from '../components/HelloWorld.vue';
 	<main>
 		<h2>首页</h2>
 		<HelloWorld msg="Vite + Vue" />
-		<SvgIcon name="alicon-shezhi"></SvgIcon>
+		<SvgIcon name="alicon-shezhi" />
 	</main>
 </template>
