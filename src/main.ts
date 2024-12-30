@@ -26,6 +26,17 @@ import 'virtual:svg-icons-register';
 import SvgIcon from '@/components/SvgIcon.vue';
 app.component('SvgIcon', SvgIcon);
 
+// 引入Element图标
+import { Plus } from '@element-plus/icons-vue';
+// 创建一个图标数组，包含需要注册的图标组件
+const icons = [Plus];
+// 循环注册图标组件
+icons.forEach(icon => {
+	if (icon.name && !app.component(icon.name)) {
+		app.component(icon.name, icon);
+	}
+});
+
 app.use(createPinia());
 app.use(router);
 app.mount('#app');

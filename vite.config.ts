@@ -6,6 +6,10 @@ import vueDevTools from 'vite-plugin-vue-devtools-cn';
 import { resolve } from 'path';
 // 引入svg图标
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+// 引入Elemetnt-plus
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -16,11 +20,21 @@ export default defineConfig({
 			iconDirs: [resolve(process.cwd(), 'src/assets/svg')], // svg的文件路径
 			symbolId: 'icon-[name]',
 		}),
+		AutoImport({
+			imports: ['vue', 'vue-router'],
+			resolvers: [
+				ElementPlusResolver(), // 自动导入图标组件
+			],
+			dts: resolve(resolve(__dirname, 'src'), 'auto-imports.d.ts'),
+		}),
+		Components({
+			resolvers: [ElementPlusResolver()],
+			dts: resolve(resolve(__dirname, 'src'), 'components.d.ts'),
+		}),
 	],
 	resolve: {
 		alias: {
-			// '@': fileURLToPath(new URL('./src', import.meta.url)),
-			'@': resolve('src'),
+			'@': fileURLToPath(new URL('./src', import.meta.url)),
 		},
 	},
 	css: {
