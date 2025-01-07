@@ -36,8 +36,14 @@ icons.forEach(icon => {
 	}
 });
 
+// 引入全局样式文件
 import '@/assets/css/main.scss';
+// 引入UnoCSS
 import 'virtual:uno.css';
+
+// 引入mitt
+import $bus from '@/utils/mitt.ts';
+app.config.globalProperties.$bus = $bus;
 
 app.use(createPinia());
 app.use(router);

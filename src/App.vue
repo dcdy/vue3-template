@@ -1,5 +1,5 @@
 <template>
-	<el-config-provider :locale="locale">
+	<el-config-provider :locale="locale" :button="{ autoInsertSpace: true }" :message="{ max: 3 }">
 		<RouterView />
 	</el-config-provider>
 </template>
