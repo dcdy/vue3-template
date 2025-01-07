@@ -5,3 +5,5 @@
 ✔️ Unocss
 ✔️ Mitt
 ❌ Axios 接口
+❌ VueUse
+✔️ 自定义指令 clickoutside

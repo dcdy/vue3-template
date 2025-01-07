@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import '@/assets/iconfonts/iconfont.js'; // 本地引入阿里图标库
-import { defineProps, computed } from 'vue';
+import { computed } from 'vue';
 const props = defineProps({
 	prefix: {
 		type: String,

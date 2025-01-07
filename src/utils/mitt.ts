@@ -1,6 +1,6 @@
 /* 
-    使用
-    import $bus from '@/utils/mitt.js'
+    使用：
+    import $bus from '@/utils/mitt.ts'
 
     派发（emit）：$bus.emit('emitter', 2)
     监听（on）：$bus.on('emitter', e => console.log('监听emitter', e) )

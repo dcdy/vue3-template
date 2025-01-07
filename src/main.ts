@@ -35,6 +35,7 @@ icons.forEach(icon => {
 		app.component(icon.name, icon);
 	}
 });
+import 'dayjs/locale/zh-cn';
 
 // 引入全局样式文件
 import '@/assets/css/main.scss';
