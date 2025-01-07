@@ -1,5 +1,4 @@
-import '@/assets/css/main.scss';
-
+// 引用Unocss
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
@@ -36,6 +35,9 @@ icons.forEach(icon => {
 		app.component(icon.name, icon);
 	}
 });
+
+import '@/assets/css/main.scss';
+import 'virtual:uno.css';
 
 app.use(createPinia());
 app.use(router);

@@ -3,7 +3,7 @@ out
 .DS_Store
 node_modules
 components.d.ts
-auto-import.d.ts
+auto-imports.d.ts
 /dist
 
 
@@ -33,5 +33,3 @@ pnpm-debug.log*
 /build2
 *.zip
 *.log*
-dist
-out
