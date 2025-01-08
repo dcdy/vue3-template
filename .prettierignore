@@ -1,0 +1,15 @@
+out
+dist
+node_modules
+pnpm-lock.yaml
+LICENSE.md
+tsconfig.json
+tsconfig.*.json
+.history
+.vscode
+assets
+*.md
+*.woff
+*.ttf
+*.sh
+*.svg

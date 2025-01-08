@@ -1,7 +1,11 @@
 <template>
-	<el-config-provider :locale="locale" :button="{ autoInsertSpace: true }" :message="{ max: 3 }">
-		<RouterView />
-	</el-config-provider>
+    <el-config-provider
+        :locale="locale"
+        :button="{ autoInsertSpace: true }"
+        :message="{ max: 3 }"
+    >
+        <RouterView />
+    </el-config-provider>
 </template>
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
