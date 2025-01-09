@@ -8,7 +8,7 @@
             @click="onButton"
             v-click-outside="onClickOutside"
         >
-            按钮
+            点击获取天气
         </el-button>
         <el-date-picker
             v-model="value1"
@@ -32,6 +32,25 @@
         >
             跳转到详情页
         </div>
+        <!-- temperature、weather、wind -->
+        <div
+            class=""
+            v-for="(e, i) in weatherArr"
+            :key="i"
+        >
+            {{
+                '日期：' +
+                e.date +
+                ' -- 空气质量：' +
+                e.air_quality +
+                ' -- 温度：' +
+                e.temperature +
+                ' -- 天气：' +
+                e.weather +
+                ' -- 风向：' +
+                e.wind
+            }}
+        </div>
     </main>
 </template>
 <script setup>
@@ -41,6 +60,8 @@ import { throttleFun } from '@/utils/index';
 import { useNow } from '@vueuse/core';
 import { ClickOutside as vClickOutside } from 'element-plus';
 
+import { getWeather } from '@/api/index';
+
 let value1 = ref('');
 
 const now = useNow();
@@ -48,12 +69,20 @@ const dayNow = computed(() => dateFormat(now.value, 'YYYY年M月D日 dddd HH:mm:
 const skip = () => {
     router.push('/detail');
 };
+let weatherArr = ref([]);
 // 点击按钮
 const onButton = () => {
-    ElMessage({
-        message: '点击按钮',
-        type: 'success',
-        grouping: true
+    let params = {
+        city: '沈阳'
+        // successMode: 'msg'
+    };
+    getWeather(params).then((res) => {
+        ElMessage({
+            message: '点击按钮',
+            type: 'success',
+            grouping: true
+        });
+        weatherArr.value = res.data.data;
     });
 };
 // 点击指定元素外的部分

@@ -16,6 +16,9 @@ dependencies:
   element-plus:
     specifier: ^2.9.1
     version: 2.9.1(vue@3.5.13)
+  es-toolkit:
+    specifier: ^1.31.0
+    version: 1.31.0
   mitt:
     specifier: ^3.0.1
     version: 3.0.1
@@ -42,6 +45,9 @@ devDependencies:
   '@types/node':
     specifier: ^22.10.2
     version: 22.10.2
+  '@types/qs':
+    specifier: ^6.9.17
+    version: 6.9.17
   '@unocss/preset-rem-to-px':
     specifier: ^0.65.3
     version: 0.65.3
@@ -72,6 +78,9 @@ devDependencies:
   unplugin-auto-import:
     specifier: ^0.19.0
     version: 0.19.0(@vueuse/core@12.3.0)
+  unplugin-element-plus:
+    specifier: ^0.9.0
+    version: 0.9.0
   unplugin-vue-components:
     specifier: ^0.28.0
     version: 0.28.0(vue@3.5.13)
@@ -1307,6 +1316,10 @@ packages:
       undici-types: 6.20.0
     dev: true
 
+  /@types/qs@6.9.17:
+    resolution: {integrity: sha512-rX4/bPcfmvxHDv0XjfJELTTr+iB+tn032nPILqHm5wbthUUUuVtNGGqzhya9XUxjTP8Fpr0qYgSZZKxGY++svQ==}
+    dev: true
+
   /@types/svgo@2.6.4:
     resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==}
     dependencies:
@@ -2540,6 +2553,10 @@ packages:
     resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
     engines: {node: '>= 0.4'}
 
+  /es-module-lexer@1.6.0:
+    resolution: {integrity: sha512-qqnD1yMU6tk/jnaMosogGySTZP8YtUgAffA9nMN+E/rjxcfRQ6IEk7IiozUjgxKoFHBGjTLnrHB/YC45r/59EQ==}
+    dev: true
+
   /es-object-atoms@1.0.0:
     resolution: {integrity: sha512-MZ4iQ6JwHOBQjahnjwaC1ZtIBH+2ohjamzAO3oaHcXYup7qxjF2fixyH+Q71voWHeOkI2q/TnJao/KfXYIZWbw==}
     engines: {node: '>= 0.4'}
@@ -2564,6 +2581,10 @@ packages:
       is-date-object: 1.1.0
       is-symbol: 1.1.1
     dev: true
+
+  /es-toolkit@1.31.0:
+    resolution: {integrity: sha512-vwS0lv/tzjM2/t4aZZRAgN9I9TP0MSkWuvt6By+hEXfG/uLs8yg2S1/ayRXH/x3pinbLgVJYT+eppueg3cM6tg==}
+    dev: false
 
   /esbuild@0.23.1:
     resolution: {integrity: sha512-VVNz/9Sa0bs5SELtn3f7qhJCDPCF5oMEl5cO9/SSinpE9hbPVvxbd572HH5AKiP7WD8INO53GgfDDhRjkylHEg==}
@@ -4791,6 +4812,18 @@ packages:
       magic-string: 0.30.17
       picomatch: 4.0.2
       unimport: 3.14.5
+      unplugin: 2.1.2
+    transitivePeerDependencies:
+      - rollup
+    dev: true
+
+  /unplugin-element-plus@0.9.0:
+    resolution: {integrity: sha512-xzxU+Ri16EtHsow5uJCYLOx6vbKKNC3ts1+EyqKdmPjBA6iRCpyrc7bv7o0RhGSbNc7viquepO2GgIvSL5K8TA==}
+    engines: {node: '>=18.12.0'}
+    dependencies:
+      '@rollup/pluginutils': 5.1.4
+      es-module-lexer: 1.6.0
+      magic-string: 0.30.17
       unplugin: 2.1.2
     transitivePeerDependencies:
       - rollup
