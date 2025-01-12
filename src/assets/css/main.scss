@@ -1,6 +1,11 @@
-@import './minireset.min.css';
-@import './elementui.scss';
+@use './minireset.min.css';
+@use './elementui.scss' as *;
 
+body {
+    // overflow: hidden;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
 #app {
     width: 100%;
     height: 100%;
@@ -55,4 +60,16 @@ img {
 
 .el-button {
     border-radius: 8px;
+}
+
+.custom-drag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+         -o-user-select: none;
 }

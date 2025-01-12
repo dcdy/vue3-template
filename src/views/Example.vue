@@ -51,26 +51,62 @@
                 e.wind
             }}
         </div>
+        <div
+            class="drag w-fit bg-red"
+            id="drag"
+            ref="drag"
+            v-if="showDragDialog"
+        >
+            <div
+                class="drag-child"
+                id="drag-child"
+                ref="dragChild"
+                @click.stop="onDrag"
+            >
+                按我拖拽
+            </div>
+            <div class="">我是拖拽内容</div>
+            <div
+                class="position[t-0,r-0] size-20 bg-blue text-20 flex[center]"
+                @click="showDragDialog = false"
+            >
+                ×
+            </div>
+        </div>
+        <div
+            class=""
+            @click="disableDrag"
+        >
+            点击禁用拖拽
+        </div>
+        <div
+            class=""
+            @click="enableDrag"
+        >
+            点击开始拖拽
+        </div>
+        <div class="">
+            当前拖拽状态：{{ isDragging }}；当前位置：{{
+                'x：' + position.x + '；y：' + position.y + isClick
+            }}
+        </div>
     </main>
 </template>
 <script setup>
 const router = useRouter();
-import { dateFormat } from '@/utils/date';
-import { throttleFun } from '@/utils/index';
-import { useNow } from '@vueuse/core';
-import { ClickOutside as vClickOutside } from 'element-plus';
-
-import { getWeather } from '@/api/index';
-
 let value1 = ref('');
-
+// TAG当前时间
+import { dateFormat } from '@/utils/date';
+import { useNow } from '@vueuse/core';
 const now = useNow();
 const dayNow = computed(() => dateFormat(now.value, 'YYYY年M月D日 dddd HH:mm:ss'));
+// TAG路由跳转
 const skip = () => {
     router.push('/detail');
 };
+// TAG调用接口
+import { getWeather } from '@/api/index';
 let weatherArr = ref([]);
-// 点击按钮
 const onButton = () => {
     let params = {
         city: '沈阳'
@@ -85,12 +121,26 @@ const onButton = () => {
         weatherArr.value = res.data.data;
     });
 };
-// 点击指定元素外的部分
+// TAG点击指定元素外的部分
+import { ClickOutside as vClickOutside } from 'element-plus';
 const onClickOutside = (e) => {
     console.log('🚀 ~点击指定元素外的部分:', e);
     // let extraElement = document.querySelector('.canvas-util-popover')?.contains(e.target);
 };
-const throttledCallback = throttleFun(1000);
-throttledCallback(() => console.log('这将每秒调用一次。'));
+// TAG拖拽useDraggable
+import { useDraggable } from '@/hooks/useDraggable';
+let drag = useTemplateRef('drag');
+let dragChild = useTemplateRef('dragChild');
+const { position, isDragging, isClick, enableDrag, disableDrag } = useDraggable(drag, dragChild, {
+    allowOverflow: -1
+});
+let showDragDialog = ref(true);
+const onDrag = () => {
+    if (!isClick.value) {
+        console.log('🚀 ~ 不点击');
+        return; // 不执行点击
+    }
+    console.log('🚀 ~ 点击事件', isClick.value);
+};
 </script>
 <style lang="scss" scoped></style>
