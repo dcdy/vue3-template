@@ -28,6 +28,14 @@ interface DraggableArgs {
  *   - `isClick` - 是否为点击
  *   - `enableDrag` - 启用拖拽的函数
  *   - `disableDrag` - 禁用拖拽的函数
+ * 
+ * @example
+ * import { useDraggable } from '@/hooks/useDraggable';
+   let drag = useTemplateRef('drag');
+   let dragChild = useTemplateRef('dragChild');
+   const { position, isDragging, isClick, enableDrag, disableDrag } = useDraggable(drag, dragChild, {
+       allowOverflow: -1
+   });
  */
 export function useDraggable(
     containerElementRef: Ref<HTMLElement>,

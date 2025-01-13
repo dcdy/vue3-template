@@ -2,7 +2,6 @@
 @use './elementui.scss' as *;
 
 body {
-    // overflow: hidden;
     min-height: 100vh;
     box-sizing: border-box;
 }
@@ -63,7 +62,7 @@ img {
 }
 
 .custom-drag {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     -webkit-user-select: none;

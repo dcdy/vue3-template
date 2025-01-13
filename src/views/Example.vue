@@ -132,7 +132,7 @@ import { useDraggable } from '@/hooks/useDraggable';
 let drag = useTemplateRef('drag');
 let dragChild = useTemplateRef('dragChild');
 const { position, isDragging, isClick, enableDrag, disableDrag } = useDraggable(drag, dragChild, {
-    allowOverflow: -1
+    allowOverflow: 1
 });
 let showDragDialog = ref(true);
 const onDrag = () => {
