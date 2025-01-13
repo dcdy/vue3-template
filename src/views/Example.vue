@@ -32,7 +32,6 @@
         >
             跳转到详情页
         </div>
-        <!-- temperature、weather、wind -->
         <div
             class=""
             v-for="(e, i) in weatherArr"
@@ -51,6 +50,8 @@
                 e.wind
             }}
         </div>
+
+        <!-- HACK拖拽 -->
         <div
             class="drag w-fit bg-red"
             id="drag"
@@ -90,6 +91,24 @@
                 'x：' + position.x + '；y：' + position.y + isClick
             }}
         </div>
+        <!-- HACK右键菜单 -->
+        <h1 class="">右键菜单</h1>
+        <ContextMenu
+            class="w-100 bg-#b1c4ff"
+            :menu="[{ name: '修改' }, { name: '删除' }]"
+            @select="onContextMenu"
+        >
+            <div
+                class="py-2 cursor-pointer"
+                v-for="(item, index) in [1, 2, 3]"
+                :key="index"
+            >
+                <div class="flex[center,] hover:(bg-#0078D7 c-#fff) rounded-4 p[3,5]">
+                    <div class="size-5 mr-5"></div>
+                    <div class="">{{ item }}</div>
+                </div>
+            </div>
+        </ContextMenu>
     </main>
 </template>
 <script setup>
@@ -100,10 +119,12 @@ import { dateFormat } from '@/utils/date';
 import { useNow } from '@vueuse/core';
 const now = useNow();
 const dayNow = computed(() => dateFormat(now.value, 'YYYY年M月D日 dddd HH:mm:ss'));
+// import ContextMenu from '@/components/ContextMenu.vue';
 // TAG路由跳转
 const skip = () => {
     router.push('/detail');
 };
+
 // TAG调用接口
 import { getWeather } from '@/api/index';
 let weatherArr = ref([]);
@@ -121,12 +142,14 @@ const onButton = () => {
         weatherArr.value = res.data.data;
     });
 };
+
 // TAG点击指定元素外的部分
 import { ClickOutside as vClickOutside } from 'element-plus';
 const onClickOutside = (e) => {
     console.log('🚀 ~点击指定元素外的部分:', e);
     // let extraElement = document.querySelector('.canvas-util-popover')?.contains(e.target);
 };
+
 // TAG拖拽useDraggable
 import { useDraggable } from '@/hooks/useDraggable';
 let drag = useTemplateRef('drag');
@@ -141,6 +164,15 @@ const onDrag = () => {
         return; // 不执行点击
     }
     console.log('🚀 ~ 点击事件', isClick.value);
+};
+
+// TAG右键菜单
+const onContextMenu = (item, index) => {
+    console.log('右键菜单点击的选项', item, index);
+    ElMessage({
+        message: '右键了菜单：' + item + index,
+        type: 'success'
+    });
 };
 </script>
 <style lang="scss" scoped></style>
