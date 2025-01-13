@@ -109,6 +109,37 @@
                 </div>
             </div>
         </ContextMenu>
+        <!-- HACK播放音乐 -->
+        <el-button
+            type="primary"
+            @click="play()"
+        >
+            播放音乐
+        </el-button>
+        <el-button
+            type="primary"
+            @click="play2()"
+        >
+            播放音乐2
+        </el-button>
+        <el-button
+            type="primary"
+            @click="pauseAudio()"
+        >
+            暂停音乐
+        </el-button>
+        <el-button
+            type="primary"
+            @click="resumeAudio()"
+        >
+            继续播放
+        </el-button>
+        <el-button
+            type="primary"
+            @click="stopAudio()"
+        >
+            停止音乐
+        </el-button>
     </main>
 </template>
 <script setup>
@@ -119,7 +150,7 @@ import { dateFormat } from '@/utils/date';
 import { useNow } from '@vueuse/core';
 const now = useNow();
 const dayNow = computed(() => dateFormat(now.value, 'YYYY年M月D日 dddd HH:mm:ss'));
-// import ContextMenu from '@/components/ContextMenu.vue';
+
 // TAG路由跳转
 const skip = () => {
     router.push('/detail');
@@ -173,6 +204,18 @@ const onContextMenu = (item, index) => {
         message: '右键了菜单：' + item + index,
         type: 'success'
     });
+};
+
+// TAG播放音乐
+import AlarmAudio from '@/assets/ling.mp3';
+import AlarmAudioAlarm from '@/assets/alarm.mp3';
+import { useAudioPlayer } from '@/hooks/useAudioPlayer';
+const { playAudio, stopAudio, pauseAudio, resumeAudio } = useAudioPlayer();
+const play = () => {
+    playAudio(AlarmAudio);
+};
+const play2 = () => {
+    playAudio(AlarmAudioAlarm);
 };
 </script>
 <style lang="scss" scoped></style>
