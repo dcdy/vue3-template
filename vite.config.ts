@@ -13,6 +13,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import ElementPlus from 'unplugin-element-plus/vite';
 // 引入UnoCSS
 import UnoCSS from 'unocss/vite';
+import { codeInspectorPlugin } from 'code-inspector-plugin';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -52,7 +53,13 @@ export default defineConfig({
             resolvers: [ElementPlusResolver()],
             dts: resolve(resolve(__dirname, 'src'), 'components.d.ts')
         }),
-        UnoCSS()
+        UnoCSS(),
+        codeInspectorPlugin({
+            bundler: 'vite',
+            editor: 'code', // 指定 IDE 为 vscode
+            hideConsole: true,
+            hideDomPathAttr: true
+        })
     ],
     server: {
         host: '0.0.0.0', // 让服务器对外可访问

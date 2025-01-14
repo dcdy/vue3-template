@@ -31,6 +31,7 @@
         "@unocss/preset-rem-to-px": "^0.65.3",
         "@vitejs/plugin-vue": "^5.2.1",
         "@vue/tsconfig": "^0.7.0",
+        "code-inspector-plugin": "^0.19.2",
         "fast-glob": "^3.3.2",
         "npm-run-all2": "^7.0.2",
         "sass": "^1.83.1",
