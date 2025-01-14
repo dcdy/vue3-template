@@ -11,7 +11,10 @@ const router = createRouter({
         {
             path: '/detail',
             name: 'Detail',
-            component: () => import('../views/Detail.vue')
+            component: () => import('../views/Detail.vue'),
+            meta: {
+                title: '详情'
+            }
         }
     ]
 });
