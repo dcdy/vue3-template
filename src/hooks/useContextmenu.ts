@@ -44,23 +44,23 @@ export function useContextmenu(container: ContainerElement) {
         visible.value = true;
 
         nextTick(() => {
-            const { clientX, clientY } = e;
+            const { pageX, pageY } = e;
             const menuContainer = document.querySelector('.context-menu') as HTMLElement;
             const { clientWidth: menuWidth, clientHeight: menuHeight } = menuContainer;
-            const isOverPortWidth = clientX + menuWidth > window.innerWidth;
-            const isOverPortHeight = clientY + menuHeight > window.innerHeight;
+            const isOverPortWidth = pageX + menuWidth > window.innerWidth;
+            const isOverPortHeight = pageY + menuHeight > window.innerHeight;
 
             if (isOverPortWidth) {
-                x.value = clientX - menuWidth;
-                y.value = clientY;
+                x.value = pageX - menuWidth;
+                y.value = pageY;
             }
             if (isOverPortHeight) {
-                x.value = clientX;
-                y.value = clientY - menuHeight;
+                x.value = pageX;
+                y.value = pageY - menuHeight;
             }
             if (!isOverPortHeight && !isOverPortWidth) {
-                x.value = clientX;
-                y.value = clientY;
+                x.value = pageX;
+                y.value = pageY;
             }
         });
     }

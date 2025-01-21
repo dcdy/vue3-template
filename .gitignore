@@ -5,7 +5,7 @@ node_modules
 components.d.ts
 auto-imports.d.ts
 /dist
-
+*.db
 
 # local env files
 .env.local

@@ -5,7 +5,7 @@ import type { Ref } from 'vue';
 interface DraggableArgs {
     initLeft?: number; // 可选参数，默认值为0
     initTop?: number; // 可选参数，默认值为0
-    allowOverflow?: number; // 可选参数，默认值为0
+    allowOverflow?: number; // 可选参数，默认值为1
     disabled?: boolean; // 可选参数，默认值为false
     zIndex?: number; // 可选参数，默认值为1
 }
@@ -18,7 +18,7 @@ interface DraggableArgs {
  * @param args - 拖拽元素的其他相关配置（可选）
  *   - `initLeft` (number): 拖拽元素初始的 left 偏移量，可选，默认值为 0。
  *   - `initTop` (number): 拖拽元素初始的 top 偏移量，可选，默认值为 0。
- *   - `allowOverflow` (number): 是否允许拖拽元素超出容器边界，可选，默认值为 0(0:不允许;1:允许;-1:不允许且跟随窗口大小移动)。
+ *   - `allowOverflow` (number): 是否允许拖拽元素超出容器边界，可选，默认值为 1 (0:不允许;1:允许;-1:不允许且跟随窗口大小移动)。
  *   - `disabled` (boolean): 是否禁用拖拽，可选,默认值为 false。
  *   - `zIndex` (number): 拖拽元素的 z-index 值，可选，默认值为 1。
  *
@@ -50,7 +50,7 @@ export function useDraggable(
 } {
     let containerElement = containerElementRef.value;
     let draggableElement = draggableElementRef.value;
-    const { initLeft = 0, initTop = 0, allowOverflow = 0, disabled = false, zIndex = 1 } = args;
+    const { initLeft = 0, initTop = 0, allowOverflow = 1, disabled = false, zIndex = 1 } = args;
 
     const position = reactive<{ x: number; y: number }>({ x: initLeft, y: initTop });
     let startX = 0; // 拖拽开始时的鼠标或触摸点的 x 坐标
