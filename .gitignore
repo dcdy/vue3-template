@@ -6,6 +6,7 @@ components.d.ts
 auto-imports.d.ts
 /dist
 *.db
+/types
 
 # local env files
 .env.local

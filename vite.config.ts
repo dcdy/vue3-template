@@ -47,11 +47,11 @@ export default defineConfig({
             resolvers: [
                 ElementPlusResolver() // 自动导入图标组件
             ],
-            dts: resolve(resolve(__dirname, 'src'), 'auto-imports.d.ts')
+            dts: resolve(resolve(__dirname, 'types'), 'auto-imports.d.ts')
         }),
         Components({
             resolvers: [ElementPlusResolver()],
-            dts: resolve(resolve(__dirname, 'src'), 'components.d.ts')
+            dts: resolve(resolve(__dirname, 'types'), 'components.d.ts')
         }),
         UnoCSS(),
         codeInspectorPlugin({

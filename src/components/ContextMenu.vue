@@ -2,24 +2,24 @@
     <div ref="contextmenuRef">
         <slot></slot>
         <Teleport to="body">
-            <!-- <Transition
+            <Transition
                 @enter="handleEnter"
                 @after-enter="handdleAfterEnter"
-            > -->
-            <ul
-                v-if="visible"
-                class="context-menu"
-                :style="{ left: x + 'px', top: y + 'px' }"
             >
-                <li
-                    class="context-menu-item"
-                    v-for="(item, index) in menu"
-                    @click="select(item, index)"
+                <ul
+                    v-if="visible"
+                    class="context-menu"
+                    :style="{ left: x + 'px', top: y + 'px' }"
                 >
-                    {{ item.name }}
-                </li>
-            </ul>
-            <!-- </Transition> -->
+                    <li
+                        class="context-menu-item"
+                        v-for="(item, index) in menu"
+                        @click="select(item, index)"
+                    >
+                        {{ item.name }}
+                    </li>
+                </ul>
+            </Transition>
         </Teleport>
     </div>
 </template>
@@ -30,6 +30,10 @@ const props = defineProps({
     menu: {
         type: Array,
         default: () => []
+    },
+    animation: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -43,6 +47,7 @@ const select = (item, index) => {
 };
 
 function handleEnter(el) {
+    if (!props.animation) return;
     // 手动计算auto下撑开的容器高度
     el.style.height = 'auto';
     // 这里需要减去多余的padding
@@ -59,6 +64,7 @@ function handleEnter(el) {
 
 // 进入动画结束后，关闭过渡，否则关闭菜单时有时延
 function handdleAfterEnter(el) {
+    if (!props.animation) return;
     el.style.transition = 'none';
 }
 </script>
@@ -82,6 +88,7 @@ function handdleAfterEnter(el) {
         padding: 5px 0;
         box-sizing: border-box;
         border-radius: 4px;
+        color: #000;
         text-align: center;
         cursor: pointer;
         &:hover {
